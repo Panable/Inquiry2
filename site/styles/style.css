@@ -1,0 +1,242 @@
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display');
+@import url('https://fonts.googleapis.com/css?family=Inria Sans');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inria Sans', 'ui-serif';
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: url('../images/Backdrop.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #f0f0f0;
+}
+
+/* --- NAVIGATION START --- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(26, 24, 24, 0.75);
+    width: 100%;
+    z-index: 1000;
+    padding: 0.5rem;
+    position: relative;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+nav > a > img {
+    margin: 0.4rem;
+    width: 35px;
+    height: auto;
+}
+
+nav > ul {
+    font-family: 'Inria Sans', serif;
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+}
+
+nav > ul > li {
+    font-size: 1.4em;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+    margin: 0 20px;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: #D5B778;
+}
+
+ul li:nth-child(2) a {
+    color: #D9D9D9;
+}
+
+ul li:nth-child(3) a {
+    color: #86BB8F;
+}
+
+ul li:nth-child(4) a {
+    color: #D9D9D9;
+}
+
+@media (max-width: 865px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav > ul {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+    nav > ul > li {
+        margin: 10px 0;
+    }
+}
+
+/* --- NAVIGATION END --- */
+
+/* Horizontal rule styling */
+hr {
+    margin: 0;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(166, 166, 166, 0), rgba(166, 166, 166, 0.75), rgba(166, 166, 166, 0));
+}
+
+/* --- FOOTER START --- */
+footer {
+    background: #212121 none;
+    width: 100%;
+    height: 3rem;
+    color: #DEDEDE;
+    font-family: 'Inria Sans', serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    margin-top: auto;
+}
+
+footer > p {
+    margin: 0.75rem;
+}
+
+@media (max-width: 865px) {
+    footer {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+    }
+    footer > p {
+        margin: 0.5rem 0;
+        text-align: center;
+    }
+}
+
+/* --- FOOTER END --- */
+
+/* General Styles */
+.container {
+    background-color: rgba(66,66,66);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+/* Content Block */
+.content-block {
+    background-color: #333;
+    border-radius: 15px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 865px) {
+    .content-block {
+        width: 100%;
+    }
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* Grid Item */
+.grid-item {
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Headers */
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Paragraph */
+p {
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Forms */
+input, select, textarea {
+    background-color: #222;
+    border: 1px solid #555;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #444;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
