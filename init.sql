@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS Competition;
+
+CREATE TABLE Competition (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO Competition (Name)
+VALUES ("MAX SUX");
