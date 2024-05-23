@@ -17,24 +17,26 @@ if (isLoggedIn()) /* We are already logged in! */
 // Handle post request here
 if ($posting)
 {
-//Array ( [first_name] => Dhanveer [last_name] => Ramnauth [username] => asd [password] => asdasd )
+    $error = "";
     $all_set = isset($_POST["first_name"]) 
             || isset($_POST["last_name"])
             || isset($_POST["username"])
             || isset($_POST["password"]);
-    if (!$all_set) try_again('Something went really wrong here!');
+    if (!$all_set) $error = 'Something went really wrong here!';
 
     $first_name = $_POST["first_name"];
-    if ($first_name == "") try_again("Please enter a first name");
+    if ($first_name == "") $error .= "Please enter a first name<br>";
 
     $last_name  = $_POST["last_name"];
-    if ($last_name == "") try_again("Please enter a last name");
+    if ($last_name == "") $error .= "Please enter a last name<br>";
 
     $username   = $_POST["username"];
-    if ($username == "") try_again("Please enter a username");
+    if ($username == "") $error .= "Please enter a username<br>";
 
     $password   = $_POST["password"];
-    if ($password == "") try_again("Please enter a password");
+    if ($password == "") $error .= "Please enter a password<br>";
+
+    if ($error != "") try_again($error);
 
     require_once "settings.php";
     $conn = @mysqli_connect(
