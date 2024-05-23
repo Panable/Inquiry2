@@ -1,4 +1,4 @@
-<?php include 'header.inc'; ?>
+<?php include 'header.inc';?>
 <main>
     <section class="content-block">
         <img src="images/TheHiveLogo.svg" alt="The Hive Logo">
@@ -50,4 +50,3 @@
     </section>
 </main>
 <?php include 'footer.inc'; ?>
-

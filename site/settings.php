@@ -1,5 +1,5 @@
 <?php
-$db_host = '';
-$db_user = '';
-$db_password = '';
-$db_name = '';
+$db_host = 'inquiry2-mysql-1';
+$db_user = 'user';
+$db_password = 'kaibingoat';
+$db_name = 'kaibindb';

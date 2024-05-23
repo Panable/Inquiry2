@@ -1,3 +1,4 @@
+<?php require_once 'helper.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,17 @@
             <li><a href="apply.php">Apply</a></li>
             <li><a href="about.php">About Us</a></li>
             <li><a href="phpenhancements.php">Enhancements</a></li>
-            <li><a href="manage.php">Manage</a></li>
+            <?php 
+                if (isLoggedIn())
+                {
+                    echo '<li><a href="manage.php">Manage</a></li>';
+                    echo '<li><a href="logout.php">Logout</a></li>';
+                }
+                else
+                {
+                    echo '<li><a href="login.php">Login</a></li>';
+                }
+            ?>
         </ul>
         <hr>
     </nav>
