@@ -1,28 +1,17 @@
-<?php
-include 'header.inc';
-require 'settings.php';
+<?php include 'header.inc'; ?>
+<?php require_once 'settings.php'; ?>
 
-// Fetch job descriptions from the database
+<?php
 $conn = @mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$job_descriptions = [];
-$sql = "SELECT job_ref_number, job_title FROM job_descriptions";
-$result = mysqli_query($conn, $sql);
 
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $job_descriptions[] = $row;
-    }
-} else {
-    die("Query failed: " . mysqli_error($conn));
-}
-
-mysqli_close($conn);
+@mysqli_close($conn);
 ?>
+
 <main>
     <section class="content-block">
         <form action="processEOI.php" method="post" novalidate>
