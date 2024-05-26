@@ -47,7 +47,9 @@ CREATE TABLE IF NOT EXISTS eoi (
     INDEX idx_first_name (first_name),
     INDEX idx_last_name (last_name),
     INDEX idx_status (status)
-);-- Insert job descriptions
+);
+
+-- Insert job descriptions
 INSERT INTO job_descriptions (job_ref_number, job_title, job_description) VALUES
 (
     'ABC12', 

@@ -1,32 +1,24 @@
-<?php include 'header.inc'; ?>
-<?php require_once 'settings.php'; ?>
+<?php 
+include 'header.inc'; 
+require_once 'settings.php'; 
 
-<?php
-$conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
+$conn = @mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Set the character set to utf8
-if (!mysqli_set_charset($conn, "utf8")) {
-    die("Error loading character set utf8: " . mysqli_error($conn));
-}
-?>
-
-<?php
 // Fetch job descriptions
 $query = "SELECT job_ref_number FROM job_descriptions";
-$result = mysqli_query($conn, $query);
-
+$result = @mysqli_query($conn, $query);
 if (!$result) {
     die("Query failed: " . mysqli_error($conn));
-}
+} else {
 ?>
 
 <main>
     <section class="content-block">
-        <form action="processEOI.php" method="post" novalidate>
+        <form action="processEOI.php" method="post" novalidate="novalidate">
             <label for="job_ref_number">Job Reference Number:</label>
             <select id="job_ref_number" name="job_ref_number" required>
             <?php
@@ -90,7 +82,10 @@ if (!$result) {
             <label for="skill3">Skill 3:</label>
             <input type="text" id="skill3" name="skill3"><br>
 
-            <label for="other_skills">Other Skills:</label>
+            <label for="other_skills_checkbox">Other Skills:</label>
+            <input type="checkbox" id="other_skills_checkbox" name="other_skills_checkbox" value="1"><br>
+
+            <label for="other_skills">Describe Other Skills:</label>
             <textarea id="other_skills" name="other_skills"></textarea><br>
 
             <input type="submit" value="Submit">
@@ -98,5 +93,8 @@ if (!$result) {
     </section>
 </main>
 
-<?php include 'footer.inc'; ?>
+<?php
+}
+?>
 
+<?php include 'footer.inc'; ?>

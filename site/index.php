@@ -1,7 +1,6 @@
 <?php include 'header.inc';?>
 <main>
     <section class="content-block">
-        <img src="images/TheHiveLogo.svg" alt="The Hive Logo">
         <div>
             <h1>Welcome to The Hive</h1>
         </div>

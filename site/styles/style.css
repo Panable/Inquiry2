@@ -240,3 +240,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #555;
 }
+
+.content-block img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block; /* Ensure images are centered */
+    margin: 0 auto; /* Center images within the content-block */
+}
+
