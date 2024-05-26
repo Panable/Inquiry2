@@ -1,8 +1,14 @@
--- Drop job_descriptions table if it exists
-DROP TABLE IF EXISTS job_descriptions;
+-- Disable foreign key checks
+SET foreign_key_checks = 0;
 
 -- Drop eoi table if it exists
 DROP TABLE IF EXISTS eoi;
+
+-- Drop job_descriptions table if it exists
+DROP TABLE IF EXISTS job_descriptions;
+
+-- Re-enable foreign key checks
+SET foreign_key_checks = 1;
 
 -- Create job_descriptions table
 CREATE TABLE IF NOT EXISTS job_descriptions (
@@ -35,16 +41,13 @@ CREATE TABLE IF NOT EXISTS eoi (
     CONSTRAINT chk_first_name CHECK (first_name REGEXP '^[a-zA-Z]{1,20}$'),
     CONSTRAINT chk_last_name CHECK (last_name REGEXP '^[a-zA-Z]{1,20}$'),
     CONSTRAINT chk_postcode CHECK (postcode REGEXP '^[0-9]{4}$'),
-    CONSTRAINT chk_email CHECK (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
+    CONSTRAINT chk_email CHECK (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$'),
     CONSTRAINT chk_phone CHECK (phone REGEXP '^[0-9]{8,12}$'),
     INDEX idx_job_ref_number (job_ref_number),
     INDEX idx_first_name (first_name),
     INDEX idx_last_name (last_name),
     INDEX idx_status (status)
-);
-
-
--- Insert job descriptions
+);-- Insert job descriptions
 INSERT INTO job_descriptions (job_ref_number, job_title, job_description) VALUES
 (
     'ABC12', 

@@ -2,14 +2,26 @@
 <?php require_once 'settings.php'; ?>
 
 <?php
-$conn = @mysqli_connect($db_host, $db_user, $db_password, $db_name);
+$conn = mysqli_connect($db_host, $db_user, $db_password, $db_name);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
+// Set the character set to utf8
+if (!mysqli_set_charset($conn, "utf8")) {
+    die("Error loading character set utf8: " . mysqli_error($conn));
+}
+?>
 
-@mysqli_close($conn);
+<?php
+// Fetch job descriptions
+$query = "SELECT job_ref_number FROM job_descriptions";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn));
+}
 ?>
 
 <main>
@@ -17,9 +29,13 @@ if ($conn->connect_error) {
         <form action="processEOI.php" method="post" novalidate>
             <label for="job_ref_number">Job Reference Number:</label>
             <select id="job_ref_number" name="job_ref_number" required>
-                <?php foreach ($job_descriptions as $job) : ?>
-                    <option value="<?= htmlspecialchars($job['job_ref_number']) ?>"><?= htmlspecialchars($job['job_ref_number']) ?> - <?= htmlspecialchars($job['job_title']) ?></option>
-                <?php endforeach; ?>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<option value=\"" . $row['job_ref_number'] . "\">" . $row['job_ref_number'] . "</option>";
+            }
+            mysqli_free_result($result);
+            mysqli_close($conn);
+            ?>
             </select><br>
 
             <label for="first_name">First Name:</label>
@@ -83,3 +99,4 @@ if ($conn->connect_error) {
 </main>
 
 <?php include 'footer.inc'; ?>
+
