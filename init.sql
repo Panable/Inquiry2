@@ -3,7 +3,7 @@ SET foreign_key_checks = 0;
 
 -- Drop eoi table if it exists
 DROP TABLE IF EXISTS eoi;
-
+DROP TABLE IF EXISTS manager;
 -- Drop job_descriptions table if it exists
 DROP TABLE IF EXISTS job_descriptions;
 
@@ -47,6 +47,15 @@ CREATE TABLE IF NOT EXISTS eoi (
     INDEX idx_first_name (first_name),
     INDEX idx_last_name (last_name),
     INDEX idx_status (status)
+);
+
+CREATE TABLE manager (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insert job descriptions
