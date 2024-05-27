@@ -65,7 +65,7 @@ if ($posting)
             try_again("Invalid password.<br>");
         } else {
             login($username);
-            status_msg("Successfully logged in. Welcome, $username!");
+            redirect("manage.php");
         }
     }
 

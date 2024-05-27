@@ -65,6 +65,23 @@ if ($posting)
         try_again("Database connection failed: " . mysqli_connect_error());
     }
 
+    // Check if username already exists
+    $stmt = $conn->prepare("SELECT username FROM manager WHERE username = ?");
+    if ($stmt === false) {
+        try_again("Statement preparation failed: " . $conn->error);
+    }
+
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        try_again("Username already exists. Please choose a different username.");
+    }
+
+    $stmt->close();
+
+    // Proceed to insert new user
     $stmt = $conn->prepare("INSERT INTO manager (first_name, last_name, username, password) VALUES (?, ?, ?, ?)");
     if ($stmt === false) {
         try_again("Statement preparation failed: " . $conn->error);
