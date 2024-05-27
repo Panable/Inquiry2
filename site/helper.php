@@ -6,7 +6,21 @@ other parts of the website may need access to.
 Namely, contains session functions and a redirect function. */
 
 session_start();
-unsetSession("login");
+
+function timing_safe_compare($a, $b) {
+    $length = strlen($a);
+
+    if ($length !== strlen($b)) {
+        return false;
+    }
+
+    $result = 0;
+    for ($i = 0; $i < $length; $i++) {
+        $result |= (ord($a[$i]) ^ ord($b[$i]));
+    }
+
+    return $result === 0;
+}
 
 function n_password_hash($password, $cost = 10) {
     // Generate a secure random salt
@@ -28,7 +42,7 @@ function n_password_verify($password, $hash) {
     $input_hash = crypt($password, $hash);
 
     // Compare the hashes using a timing attack safe comparison
-    return hash_equals($hash, $input_hash);
+    return timing_safe_compare($hash, $input_hash);
 }
 
 function redirect($page)
