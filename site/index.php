@@ -36,7 +36,7 @@
     </section>
 
     <div class="content-block">
-        <iframe src="https://www.youtube.com/embed/kfOpQoyhyJ0?si=AZWz5nWxt5IyU_Lc" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/yd3Wg0ivsqs?si=RVYp7PAOJx-z_kE6" allowfullscreen></iframe>
     </div>
 
     <section class="content-block">
