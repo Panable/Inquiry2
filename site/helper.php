@@ -5,8 +5,8 @@ other parts of the website may need access to.
 
 Namely, contains session functions and a redirect function. */
 
-unsetSession("login");
 session_start();
+unsetSession("login");
 
 function n_password_hash($password, $cost = 10) {
     // Generate a secure random salt
