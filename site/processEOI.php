@@ -106,8 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Start transaction
-    $conn->begin_transaction();
+
 
     try {
         $stmt = $conn->prepare("INSERT INTO eoi (job_ref_number, first_name, last_name, dob, gender, street_address, suburb, state, postcode, email, phone, skill1, skill2, skill3, other_skills, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
