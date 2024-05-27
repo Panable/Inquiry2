@@ -7,8 +7,7 @@ DROP TABLE IF EXISTS manager;
 -- Drop job_descriptions table if it exists
 DROP TABLE IF EXISTS job_descriptions;
 
--- Re-enable foreign key checks
-SET foreign_key_checks = 1;
+-- -- Re-enable foreign key checks
 
 -- Create job_descriptions table
 CREATE TABLE IF NOT EXISTS job_descriptions (
@@ -58,12 +57,44 @@ CREATE TABLE manager (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO eoi (job_ref_number, first_name, last_name, dob, gender, street_address, suburb, state, postcode, email,
+                 phone, skill1, skill2, skill3, other_skills, status)
+VALUES ('ABC12', 'John', 'Doe', '1985-07-24', 'Male', '123 Main St', 'Melbourne', 'VIC', '3000', 'john.doe@example.com',
+        '0412345678', 'Programming', 'Data Analysis', 'Project Management', 'Team Player, Quick Learner', 'New'),
+       ('XYZ34', 'Jane', 'Smith', '1992-11-14', 'Female', '456 High St', 'Sydney', 'NSW', '2000',
+        'jane.smith@example.com', '0423456789', 'Web Development', 'Graphic Design', 'SEO', 'Creative, Detail-oriented',
+        'Current'),
+       ('LMN56', 'Emily', 'Johnson', '1978-03-09', 'Female', '789 Park Ave', 'Brisbane', 'QLD', '4000',
+        'emily.johnson@example.com', '0434567890', 'Database Management', 'Cloud Computing', 'Cybersecurity',
+        'Analytical, Problem-solving', 'Final'),
+       ('QWE78', 'Michael', 'Brown', '1980-01-23', 'Male', '321 Oak St', 'Adelaide', 'SA', '5000',
+        'michael.brown@example.com', '0445678901', 'Networking', 'Technical Support', 'IT Management',
+        'Organized, Communicative', 'New'),
+       ('RTY90', 'Sarah', 'Davis', '1995-06-15', 'Female', '654 Elm St', 'Perth', 'WA', '6000',
+        'sarah.davis@example.com', '0456789012', 'Marketing', 'Sales', 'Customer Service', 'Goal-oriented, Persuasive',
+        'Current'),
+       ('UOP11', 'Chris', 'Miller', '1982-09-30', 'Male', '987 Willow St', 'Hobart', 'TAS', '7000',
+        'chris.miller@example.com', '0467890123', 'Software Development', 'System Analysis', 'Consulting',
+        'Innovative, Strategic thinker', 'Final'),
+       ('ASD22', 'Jessica', 'Wilson', '1988-12-05', 'Female', '159 Cedar St', 'Darwin', 'NT', '0800',
+        'jessica.wilson@example.com', '0478901234', 'Content Creation', 'Social Media', 'Brand Management',
+        'Creative, Collaborative', 'New'),
+       ('FGH33', 'Daniel', 'Moore', '1990-04-18', 'Male', '753 Pine St', 'Canberra', 'ACT', '2600',
+        'daniel.moore@example.com', '0489012345', 'Finance', 'Accounting', 'Auditing', 'Detail-oriented, Ethical',
+        'Current'),
+       ('JKL44', 'Laura', 'Taylor', '1984-02-14', 'Female', '369 Birch St', 'Alice Springs', 'NT', '0870',
+        'laura.taylor@example.com', '0490123456', 'HR Management', 'Recruiting', 'Training',
+        'Empathetic, Good listener', 'Final'),
+       ('VBN55', 'Matthew', 'Anderson', '1976-08-22', 'Male', '951 Maple St', 'Geelong', 'VIC', '3220',
+        'matthew.anderson@example.com', '0401234567', 'Engineering', 'Project Planning', 'Quality Control',
+        'Precise, Efficient', 'New');
+
 -- Insert job descriptions
 INSERT INTO job_descriptions (job_ref_number, job_title, job_description) VALUES
 (
-    'ABC12', 
-    'Project Manager', 
-    'As the IT Project Manager, you will play a pivotal role in driving the successful execution of our organization\'s IT projects. 
+    'ABC12',
+    'Project Manager',
+    'As the IT Project Manager, you will play a pivotal role in driving the successful execution of our organization\'s IT projects.
     You\'ll be responsible for overseeing the planning, implementation, and delivery of various IT initiatives, ensuring they align with the company\'s strategic objectives and meet the highest standards of quality.
     \n
     \n
@@ -110,9 +141,9 @@ INSERT INTO job_descriptions (job_ref_number, job_title, job_description) VALUES
     - Experience in leading cross-functional teams and managing stakeholders at all levels of the organization'
 ),
 (
-    'XYZ34', 
-    'Frontend Developer', 
-    'Join our dynamic team as a Frontend Developer and contribute to the creation of cutting-edge web applications that deliver exceptional user experiences. 
+    'XYZ34',
+    'Frontend Developer',
+    'Join our dynamic team as a Frontend Developer and contribute to the creation of cutting-edge web applications that deliver exceptional user experiences.
     You\'ll collaborate closely with cross-functional teams to design and develop innovative frontend solutions that meet the needs of our users and align with our brand identity.
     \n
     \n
@@ -155,4 +186,4 @@ INSERT INTO job_descriptions (job_ref_number, job_title, job_description) VALUES
     - Experience with version control systems such as Git and familiarity with CI/CD pipelines'
 );
 
-
+SET foreign_key_checks = 1;
