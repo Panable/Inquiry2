@@ -69,7 +69,7 @@ if ($posting)
     } else {
         $stmt->bind_result($hashed_password);
         $stmt->fetch();
-        if (!password_verify($password, $hashed_password)) {
+        if (!n_password_verify($password, $hashed_password)) {
             fail_login();
             $login_attempts = getSession("login_attempts");
             $login_attempts = 3 - $login_attempts;

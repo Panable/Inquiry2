@@ -51,7 +51,7 @@ if ($posting)
     $first_name = sanitize_input($first_name);
     $last_name  = sanitize_input($last_name);
     $username   = sanitize_input($username);
-    $password   = password_hash($password, PASSWORD_DEFAULT);
+    $password   = n_password_hash($password);
 
     require_once "settings.php";
     $conn = @mysqli_connect(

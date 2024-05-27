@@ -1,10 +1,35 @@
 <?php
 
-session_start();
 /* This php file contains some common functions that
 other parts of the website may need access to. 
 
 Namely, contains session functions and a redirect function. */
+
+unsetSession("login");
+session_start();
+
+function n_password_hash($password, $cost = 10) {
+    // Generate a secure random salt
+    $salt = bin2hex(random_bytes(22));
+    $salt = substr(base64_encode($salt), 0, 22);
+    $salt = strtr($salt, '+', '.'); // Ensure compatibility with bcrypt salt
+
+    // Format the salt to match bcrypt requirements
+    $salt = sprintf('$2y$%02d$%s', $cost, $salt);
+
+    // Hash the password with the generated salt using crypt
+    $hash = crypt($password, $salt);
+
+    return $hash;
+}
+
+function n_password_verify($password, $hash) {
+    // Hash the input password with the same salt
+    $input_hash = crypt($password, $hash);
+
+    // Compare the hashes using a timing attack safe comparison
+    return hash_equals($hash, $input_hash);
+}
 
 function redirect($page)
 {
@@ -109,4 +134,3 @@ function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-unsetSession("login");
