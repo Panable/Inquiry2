@@ -266,3 +266,98 @@ input[type="submit"]:hover {
 .enhancement {
     text-align: center;
 }
+
+
+/* Manage EOI Page Styling */
+.manage-eoi-page {
+    padding: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+table th {
+    background-color: #444;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #222;
+}
+
+table tr:hover {
+    background-color: #333;
+}
+
+/* Form Styling */
+form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+form label {
+    color: #fff;
+    margin-right: 10px;
+}
+
+form input[type="text"], form select {
+    margin-right: 10px;
+}
+
+/* Status Update Styling */
+form select[name="new_status"] {
+    background-color: #444;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin: 1.5rem 0;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Message Styling */
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.message.error {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    table, table th, table td {
+        font-size: 14px;
+    }
+}
+
+.output-message {
+    margin-top: 20px;
+}
