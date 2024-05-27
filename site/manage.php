@@ -1,54 +1,67 @@
-<?php include 'header.inc'; ?>
-<?php require_once 'settings.php'; ?>
+<?php include 'header.inc';
+require_once 'settings.php';
+
+$conn = @mysqli_connect($db_host, $db_user, $db_password, $db_name);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+//Query all EOIs (Display All)
+$sql = "SELECT EOInumber AS `EOI Number`, job_ref_number AS `Job Reference Number`, first_name AS `First Name`, last_name AS `Last Name`, status AS `Status` FROM eoi";
+$result = @mysqli_query($conn, $sql);
+?>
+
 
 <main class="manage-eoi-page">
-    <section >
-        <h1> Manage EOI </h1>
+    <section>
+        <h1>Manage EOI</h1>
+
+        <form method="post" action="manage.php">
+            <label for="field">Choose a field to filter by:</label>
+            <select name="field" id="field">
+                <option value="job_ref_number">Job Reference Number</option>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="full_name">Full Name</option>
+                <option value="status">Status</option>
+                <option value="skills">Skills</option>
+            </select>
+            <input type="text" name="value" placeholder="Enter value to filter by">
+            <button type="submit" name="action" value="filter">Filter</button>
+            <button type="submit" name="action" value="delete_all">Delete All EOIs</button>
+        </form>
+
         <?php
-        echo "<select name='Field' id='eoi'>
-                <option value='Reference Number'> Reference Num </option>
-                <option value='First Name'> First Name</option>
-                <option value='Last Name'> Last Name</option>
-                <option value='Full Name'> Full Name</option>
-                <option value='Status'> Status </option>
-                <option value='Skills'> Skills </option>
-                </select>
-                "
-        ?>
-        <button> Delete All EOI's</button>
-        <table>
-            <thead>
-            <tr>
-                <th scope="col"> # </th>
-                <th scope="col"> EOI Number </th>
-                <th scope="col"> Job Reference Number </th>
-                <th scope="col"> Name </th>
-                <th scope="col"> Contact </th>
-                <th scope="col"> Status </th>
-                <th scope="col"> Action </th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            // PHP code to fetch and display EOIs
-            // Assume $eois is an array of EOI records from the database
-            foreach ($eois as $eoi) {
-                echo "<tr>
-                        <td>{$eoi['EOInumber']}</td>
-                        <td>{$eoi['job_ref_number']}</td>
-                        <td>{$eoi['first_name']}</td>
-                        <td>{$eoi['last_name']}</td>
-                        <td>{$eoi['status']}</td>
-                        <td>
-                            <a href='view.php?EOInumber={$eoi['EOInumber']}'>View</a> |
-                            <a href='delete.php?job_ref_number={$eoi['job_ref_number']}'>Delete</a> |
-                            <a href='edit_status.php?EOInumber={$eoi['EOInumber']}'>Change Status</a>
-                        </td>
-                      </tr>";
+        if ($result->num_rows > 0) {
+            echo '<table>';
+            echo '<thead>';
+            echo '<tr>
+                <th scope="col">EOI Number</th>
+                <th scope="col">Job Reference Number</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>';
+            echo '</thead>';
+            echo '<tbody>';
+
+            // Displaying query results
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '<tr>';
+                foreach ($row as $value) {
+                    echo '<td>' . $value . '</td>';
+                }
+                // Add action buttons here if needed
+
+                echo '</tr>';
             }
-            ?>
-            </tbody>
-        </table>
+            echo '</tbody>';
+            echo '</table>';
+        }
+        ?>
+
     </section>
 </main>
 
