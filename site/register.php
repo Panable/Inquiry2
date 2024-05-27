@@ -103,7 +103,7 @@ if ($posting)
 ?>
 
 <?php include 'header.inc';?>
-<div class="form-container">
+<div class="content-block">
     <h2>Register</h2>
     <form action="register.php" method="post" novalidate="novalidate">
         <input type="text" name="first_name" placeholder="First Name" required>
