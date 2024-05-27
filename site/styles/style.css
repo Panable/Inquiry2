@@ -278,11 +278,14 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border-bottom: 1px solid #ccc; /* Add border to the table */
 }
 
 table th, table td {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: none; /* Remove the border from individual cells */
+    border-bottom: 1px solid #ccc; /* Add only horizontal border to cells */
+    text-align: left;
 }
 
 table th {
@@ -290,8 +293,8 @@ table th {
     color: #fff;
 }
 
-table tr:nth-child(even) {
-    background-color: #222;
+table tr {
+    background-color: #444;
 }
 
 table tr:hover {
@@ -334,22 +337,28 @@ form button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+.output-message {
+    margin-top: 20px;
+}
 /* Message Styling */
-.message {
+.output-message {
     margin-top: 20px;
     padding: 10px;
     border-radius: 5px;
+    display: inline-block;
 }
 
-.message.success {
+.output-message.success {
     background-color: #28a745;
     color: #fff;
 }
 
-.message.error {
+.output-message.error {
     background-color: #dc3545;
     color: #fff;
+
 }
+
 
 /* Responsive Styling */
 @media (max-width: 768px) {
@@ -358,6 +367,4 @@ form button[type="submit"]:hover {
     }
 }
 
-.output-message {
-    margin-top: 20px;
-}
+

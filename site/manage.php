@@ -60,9 +60,9 @@ require_once 'settings.php';
                     $result_delete = mysqli_query($conn, $sql_delete);
 
                     if ($result_delete) {
-                        echo '<p class="output-message"> All EOIs with job reference number ' . $delete_job_ref . ' have been deleted.</p>';
+                        echo '<p class="output-message success"> All EOIs with job reference number ' . $delete_job_ref . ' have been deleted.</p>';
                     } else {
-                        echo '<p class="output-message"> Error deleting EOIs: ' . mysqli_error($conn) . '</p>';
+                        echo '<p class="output-message error"> Error deleting EOIs: ' . mysqli_error($conn) . '</p>';
                     }
                 } elseif ($action === 'update_status') {
                     // Update EOI status
@@ -75,9 +75,9 @@ require_once 'settings.php';
 
                     // Handle update success/failure
                     if ($result_update) {
-                        echo '<p class="output-message">EOI status updated successfully.</p>';
+                        echo '<p class="output-message success">EOI status updated successfully.</p>';
                     } else {
-                        echo '<p class="output-message">Error updating EOI status: ' . mysqli_error($conn) . '</p>';
+                        echo '<p class="output-message error">Error updating EOI status: ' . mysqli_error($conn) . '</p>';
                     }
                 }
             }
