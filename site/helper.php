@@ -23,8 +23,8 @@ function timing_safe_compare($a, $b) {
 }
 
 function n_password_hash($password, $cost = 10) {
-    // Generate a secure random salt
-    $salt = bin2hex(random_bytes(22));
+    // Generate a secure random salt using openssl_random_pseudo_bytes
+    $salt = bin2hex(openssl_random_pseudo_bytes(16));
     $salt = substr(base64_encode($salt), 0, 22);
     $salt = strtr($salt, '+', '.'); // Ensure compatibility with bcrypt salt
 
