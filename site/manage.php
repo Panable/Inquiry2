@@ -1,6 +1,11 @@
 <?php
+require_once 'helper.php';
+if (!isLoggedIn()) 
+    status_msg("Please login to access this page...");
+
 include 'header.inc';
 require_once 'settings.php';
+
 
 $conn = @mysqli_connect($db_host, $db_user, $db_password, $db_name);
 

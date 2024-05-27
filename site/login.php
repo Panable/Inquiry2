@@ -30,7 +30,7 @@ if ($posting)
 
     $username = $_POST["username"];
     if ($username == "") $error .= "Please enter a username<br>";
-    if (!preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $username)) $error .= "Invalid username format.<br>";
+    // Dont have to do regex matching, because it will be sanitized, and checked against the db.
 
     $password = $_POST["password"];
     if ($password == "") $error .= "Please enter a password<br>";

@@ -248,3 +248,21 @@ input[type="submit"]:hover {
     margin: 0 auto; /* Center images within the content-block */
 }
 
+.code {
+    display: grid;
+    font-family: Consolas, "courier new", serif;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    background-color: #201f1f;
+    border: 2px solid gray;
+    padding: 2%;
+    font-family: Consolas, "courier new";
+    color: #FFFFFF;
+    background-color: #000000;
+    padding: 2px;
+    font-size: 1.25rem;
+}
+
+.enhancement {
+    text-align: center;
+}

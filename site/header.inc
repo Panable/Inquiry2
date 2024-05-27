@@ -25,7 +25,7 @@
                 if (isLoggedIn())
                 {
                     echo '<li><a href="manage.php">Manage</a></li>';
-                    echo '<li><a href="logout.php">Logout</a></li>';
+                    echo '<li><a href="enhancements2.php">Logout</a></li>';
                 }
                 else
                 {

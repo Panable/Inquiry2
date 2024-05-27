@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 /* This php file contains some common functions that
 other parts of the website may need access to. 
 
@@ -109,4 +110,3 @@ function sanitize_input($data) {
 }
 
 unsetSession("login");
-session_start();
