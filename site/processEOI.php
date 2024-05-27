@@ -41,21 +41,21 @@ if ($conn->query($createTableSQL) !== TRUE) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     $job_ref_number = sanitize_input($_POST["job_ref_number"]);
-    $first_name = sanitize_input($_POST["first_name"]);
-    $last_name = sanitize_input($_POST["last_name"]);
-    $dob = sanitize_input($_POST["dob"]);
-    $gender = sanitize_input($_POST["gender"]);
+    $first_name     = sanitize_input($_POST["first_name"]);
+    $last_name      = sanitize_input($_POST["last_name"]);
+    $dob            = sanitize_input($_POST["dob"]);
+    $gender         = sanitize_input($_POST["gender"]);
     $street_address = sanitize_input($_POST["street_address"]);
-    $suburb = sanitize_input($_POST["suburb"]);
-    $state = sanitize_input($_POST["state"]);
-    $postcode = sanitize_input($_POST["postcode"]);
-    $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-    $phone = sanitize_input($_POST["phone"]);
-    $skill1 = sanitize_input($_POST["skill1"]);
-    $skill2 = sanitize_input($_POST["skill2"]);
-    $skill3 = sanitize_input($_POST["skill3"]);
-    $other_skills = sanitize_input($_POST["other_skills"]);
-    $status = "New";
+    $suburb         = sanitize_input($_POST["suburb"]);
+    $state          = sanitize_input($_POST["state"]);
+    $postcode       = sanitize_input($_POST["postcode"]);
+    $email          = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+    $phone          = sanitize_input($_POST["phone"]);
+    $skill1         = sanitize_input($_POST["skill1"]);
+    $skill2         = sanitize_input($_POST["skill2"]);
+    $skill3         = sanitize_input($_POST["skill3"]);
+    $other_skills   = sanitize_input($_POST["other_skills"]);
+    $status         = "New";
 
     // Server-side validation
     $errors = [];
@@ -90,9 +90,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
         }
     }
+
     if (!$valid_postcode) {
         $errors[] = "Invalid Postcode for the selected State.";
     }
+
     if (!empty($errors)) {
         header( "refresh:7;url=apply.php");
         echo '<link rel="stylesheet" href="styles/style.css">';

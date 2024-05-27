@@ -186,4 +186,5 @@ INSERT INTO job_descriptions (job_ref_number, job_title, job_description) VALUES
     - Experience with version control systems such as Git and familiarity with CI/CD pipelines'
 );
 
-SET foreign_key_checks = 1;
+INSERT INTO manager (first_name, last_name, username, password) 
+VALUES ('John', 'Doe', 'johndoe', '$2y$10$KXt5N.JAhlSdO6P5x.aPEuA1ZkiZHbRiVgkmzz/UC.N20n696af02');

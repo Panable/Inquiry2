@@ -7,13 +7,34 @@
 require_once 'helper.php';
 $posting = $_SERVER['REQUEST_METHOD'] == 'POST';
 
-if (isLoggedIn()) /* We are already logged in! */
+function try_again($msg)
+{
+    status_msg($msg . ' <br> Try again -> <a href="login.php">Login</a>');
+}
+
+if (isLoggedIn()) { /* We are already logged in! */
     status_msg("You are already logged in as a manager!");
+}
 
 // Handle post request here
 if ($posting)
-{   
-    print_r($_POST);
+{
+    $error = "";
+    $all_set = isset($_POST["username"]) && isset($_POST["password"]);
+    if (!$all_set) $error = 'Something went really wrong here!';
+
+    $username = $_POST["username"];
+    if ($username == "") $error .= "Please enter a username<br>";
+    if (!preg_match('/^[A-Za-z][A-Za-z0-9]{5,31}$/', $username)) $error .= "Invalid username format.<br>";
+
+    $password = $_POST["password"];
+    if ($password == "") $error .= "Please enter a password<br>";
+
+    if ($error != "") try_again($error);
+
+    $username = sanitize_input($username);
+    $password = sanitize_input($password);
+
     require_once "settings.php";
     $conn = @mysqli_connect(
         $db_host,
@@ -21,10 +42,38 @@ if ($posting)
         $db_password,
         $db_name
     );
-    status_msg("Successfully logged in");
+
+    if (!$conn) {
+        try_again("Database connection failed: " . mysqli_connect_error());
+    }
+
+    $stmt = $conn->prepare("SELECT password FROM manager WHERE username = ?");
+    if ($stmt === false) {
+        try_again("Statement preparation failed: " . $conn->error);
+    }
+
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+    
+    if ($stmt->num_rows == 0) {
+        try_again("Invalid username or password.<br>");
+    } else {
+        $stmt->bind_result($hashed_password);
+        $stmt->fetch();
+        if (!password_verify($password, $hashed_password)) {
+            try_again("Invalid password.<br>");
+        } else {
+            login($username);
+            status_msg("Successfully logged in. Welcome, $username!");
+        }
+    }
+
+    $stmt->close();
+    $conn->close();
 }
 
-// Otherwise continue as normal
+// Otherwise generate the form.
 ?>
 
 <?php include 'header.inc';?>
@@ -39,7 +88,7 @@ if ($posting)
             <button type="submit">Login</button>
         </form>
         <br>
-        <p>Dont have an account?</p>
+        <p>Don't have an account?</p>
         <a href="register.php">Register!</a>
     </div>
 </body>

@@ -60,5 +60,9 @@ function logout()
     unsetSession("login");
 }
 
+function sanitize_input($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
+
 unsetSession("login");
 session_start();
