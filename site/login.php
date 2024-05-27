@@ -16,6 +16,11 @@ if (isLoggedIn()) { /* We are already logged in! */
     status_msg("You are already logged in as a manager!");
 }
 
+$timed_out = isTimedOut();
+if ($timed_out) {
+    status_msg("You are timed out for $timed_out more seconds");
+}
+
 // Handle post request here
 if ($posting)
 {
@@ -57,12 +62,18 @@ if ($posting)
     $stmt->store_result();
     
     if ($stmt->num_rows == 0) {
-        try_again("Invalid username or password.<br>");
+        fail_login();
+        $login_attempts = getSession("login_attempts");
+        $login_attempts = 3 - $login_attempts;
+        try_again("Invalid username or password.<br>you have $login_attempts more attempts<br>");
     } else {
         $stmt->bind_result($hashed_password);
         $stmt->fetch();
         if (!password_verify($password, $hashed_password)) {
-            try_again("Invalid password.<br>");
+            fail_login();
+            $login_attempts = getSession("login_attempts");
+            $login_attempts = 3 - $login_attempts;
+            try_again("Invalid username or password.<br>you have $login_attempts more attempts<br>");
         } else {
             login($username);
             redirect("manage.php");
