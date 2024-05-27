@@ -36,7 +36,7 @@
                     </ul>
                 </li>
             </ul>
-            <a href="apply.html">Apply</a>
+            <a href="apply.php">Apply</a>
         </div>
     </section>
     <section class="content-block">
@@ -71,7 +71,7 @@
                     </ul>
                 </li>
             </ul>
-            <a href="apply.html">Apply</a>
+            <a href="apply.php">Apply</a>
         </div>
     </section class="content-block">
     <aside class="content-block">
