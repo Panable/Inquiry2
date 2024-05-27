@@ -79,7 +79,7 @@ if ($posting)
 <?php include 'header.inc';?>
 <link rel="stylesheet" href="styles/login.css">
 <body>
-    <div class="grid-item center">
+    <div class="content-block">
         <h2>Login</h2>
         <br>
         <form action="login.php" method="post" novalidate="novalidate">
